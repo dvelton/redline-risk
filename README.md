@@ -2,6 +2,9 @@
 
 A Copilot CLI plugin that color-codes tracked changes in a contract by their directional impact on your position. Instead of telling you what changed, it tells you whether each change helps or hurts you.
 
+![Redline Risk summary showing priority review, posture assessment, and color-coded changes](screenshots/redline-risk-summary.png)
+*Summary with priority review list and posture assessment for a synthetic vendor agreement.*
+
 ## What it does
 
 When you receive a redlined contract from the other side, every change needs manual evaluation. You read each insertion, deletion, and modification and mentally assess: does this strengthen my position, weaken it, or not matter?
@@ -14,6 +17,9 @@ Redline Risk makes that assessment visible. You give Copilot a tracked-changes d
 - Changes the model is uncertain about are marked with a striped pattern rather than a solid color, signaling "look at this yourself"
 
 The original text is preserved. Nothing is rewritten. The augmentation is purely visual.
+
+![Detailed change-by-change analysis with color-coded entries, impact labels, and conditional notes](screenshots/redline-risk-changes.png)
+*Change-by-change analysis sorted by severity. Each change shows the old and new text, impact level, category, author, and an explanation of the legal effect. The striped entry at the bottom is a low-confidence assessment.*
 
 ## How it differs from existing tools
 
