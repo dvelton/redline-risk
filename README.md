@@ -150,8 +150,4 @@ Common patterns are recognized automatically (e.g., "best efforts" changing to "
 
 ## License
 
-See LICENSE file.
-
-## Contributing
-
-This is a personal project. Issues and pull requests are welcome.
+MIT
