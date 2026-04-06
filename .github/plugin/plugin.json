@@ -1,0 +1,21 @@
+{
+  "name": "redline-risk",
+  "description": "Contract redline analysis with directional risk scoring. Extracts tracked changes from Word documents and produces a color-coded risk assessment showing which changes favor or hurt your position.",
+  "version": "1.0.0",
+  "author": {
+    "name": "dvelton"
+  },
+  "repository": "https://github.com/dvelton/redline-risk",
+  "license": "MIT",
+  "keywords": [
+    "redline",
+    "contracts",
+    "legal",
+    "risk-assessment",
+    "tracked-changes",
+    "document-analysis"
+  ],
+  "skills": [
+    "./skills/redline-risk"
+  ]
+}
