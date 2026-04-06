@@ -158,8 +158,8 @@ def _extract_sections(tree):
             style_val = para_style.get(qn('w:val'))
             if style_val and ('Heading' in style_val or 'heading' in style_val):
                 text = _get_element_text(para)
-                # Try to extract section number
-                section_match = re.match(r'^(\d+\.?\d*\.?)\s+(.+)$', text)
+                # Try to extract section number (strip trailing dots for clean output)
+                section_match = re.match(r'^(\d+(?:\.\d+)*)\.*\s+(.+)$', text)
                 if section_match:
                     section_num = section_match.group(1)
                     section_title = section_match.group(2)
@@ -223,7 +223,7 @@ def _get_element_text(element):
 
 
 def _get_paragraph_text(element, tree):
-    """Get the full text of the paragraph containing this element."""
+    """Get the full text of the paragraph containing this element, excluding deleted text."""
     para = element
     while para is not None and para.tag != qn('w:p'):
         para = para.getparent()
@@ -231,7 +231,24 @@ def _get_paragraph_text(element, tree):
     if para is None:
         return ""
     
-    return _get_element_text(para)
+    # Walk the paragraph's runs, skipping deleted text (w:del children)
+    # to show the "accepted" version of the paragraph
+    parts = []
+    for run in para.xpath('.//w:r', namespaces=NAMESPACES):
+        # Skip runs inside w:del (deleted text)
+        parent = run.getparent()
+        in_deletion = False
+        while parent is not None and parent != para:
+            if parent.tag == qn('w:del'):
+                in_deletion = True
+                break
+            parent = parent.getparent()
+        if in_deletion:
+            continue
+        texts = run.xpath('.//w:t/text()', namespaces=NAMESPACES)
+        parts.extend(texts)
+    
+    return ''.join(parts)
 
 
 def _get_context(element, tree, before_chars=30, after_chars=30):
