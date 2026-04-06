@@ -40,6 +40,15 @@ Redline Risk analyzes individual edits (insertions, deletions, modifications) an
 
 ### Setup
 
+Point your CLI at this repo and ask it to install the plugin for you, with this prompt:
+
+```
+Install the plugin at github.com/dvelton/redline-risk for me.
+```
+
+Or:
+
+
 Clone this repository or install the plugin through Copilot CLI:
 
 ```bash
